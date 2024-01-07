@@ -1,4 +1,4 @@
-package com.firstspringbackend.Tasks.Application;
+package com.firstspringbackend.Tasks.Application.Services;
 
 import com.firstspringbackend.Tasks.Domain.Entities.Task;
 import com.firstspringbackend.Tasks.Domain.Repositories.TaskRepository;

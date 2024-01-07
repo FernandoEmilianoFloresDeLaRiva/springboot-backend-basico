@@ -1,8 +1,9 @@
 package com.firstspringbackend.Tasks.Infraestructure.Controllers;
 
-import com.firstspringbackend.Tasks.Application.TaskService;
+import com.firstspringbackend.Tasks.Application.Services.TaskService;
 import com.firstspringbackend.Tasks.Domain.Entities.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,29 +14,34 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
     @GetMapping
-    public List<Task> getAllTasks(){
-        return taskService.getAllTasks();
+    public  ResponseEntity<List<Task>> getAllTasks(){
+        List<Task> tasks = taskService.getAllTasks();
+        return ResponseEntity.status(200).body(tasks);
     }
     @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable("id") int idTask){
-        return taskService.getTaskById(idTask);
+    public ResponseEntity<Task> getTaskById(@PathVariable("id") int idTask){
+        Task task = taskService.getTaskById(idTask);
+        return ResponseEntity.status(200).body(task);
     }
     @GetMapping("/user/{idUser}")
-    public List<Task> getTasksByIdUser(@PathVariable("idUser") int idUser){
-        return taskService.getTasksByIdUser(idUser);
+    public ResponseEntity<List<Task>> getTasksByIdUser(@PathVariable("idUser") int idUser){
+        List<Task> tasksByUser = taskService.getTasksByIdUser(idUser);
+        return ResponseEntity.status(200).body(tasksByUser);
     }
     @PostMapping
-    public Task createTask(@RequestBody Task task){
-        return taskService.createTask(task);
+    public ResponseEntity<Task> createTask(@RequestBody Task task){
+        Task newTask = taskService.createTask(task);
+        return ResponseEntity.status(201).body(newTask);
     }
     @PutMapping("/{idTask}")
-    public Task updateTask (@RequestBody Task task, @PathVariable("idTask") int idTask){
-        return taskService.updateTask(task, idTask);
+    public ResponseEntity<Task> updateTask (@RequestBody Task task, @PathVariable("idTask") int idTask){
+        Task updatedTask = taskService.updateTask(task, idTask);
+        return ResponseEntity.status(200).body(updatedTask);
     }
 
     @DeleteMapping("/{idTask}")
-    public String deleteTask (@PathVariable("idTask") int idTask) {
-        if (taskService.deleteTask(idTask)) return "Task with id "+idTask+" deleted succesfully!";
-        return "Task with id "+idTask+" not found!";
+    public ResponseEntity<String> deleteTask (@PathVariable("idTask") int idTask) {
+        if (taskService.deleteTask(idTask)) return ResponseEntity.status(200).body("Task with id "+idTask+" deleted succesfully!");
+        return ResponseEntity.status(404).body("Task with id "+idTask+" not found!");
     }
 }
