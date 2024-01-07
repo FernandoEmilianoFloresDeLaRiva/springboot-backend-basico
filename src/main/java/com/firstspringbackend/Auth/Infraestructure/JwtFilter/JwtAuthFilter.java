@@ -1,4 +1,4 @@
-package com.firstspringbackend.Auth.Application.JwtFilter;
+package com.firstspringbackend.Auth.Infraestructure.JwtFilter;
 
 import com.firstspringbackend.Auth.Application.Services.JwtService;
 import com.firstspringbackend.Users.Application.Services.UserService;

@@ -1,6 +1,6 @@
 package com.firstspringbackend.Auth.Application.Config;
 
-import com.firstspringbackend.Auth.Application.JwtFilter.JwtAuthFilter;
+import com.firstspringbackend.Auth.Infraestructure.JwtFilter.JwtAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
